@@ -1,4 +1,4 @@
-FROM node:16-alpine 
+FROM node:16-alpine as builder
 
 USER node
 
@@ -19,4 +19,4 @@ FROM nginx
 
 EXPOSE 80
 
-COPY --from=0 /home/node/app/build /usr/share/nginx/html
+COPY --from=builder /home/node/app/build /usr/share/nginx/html
